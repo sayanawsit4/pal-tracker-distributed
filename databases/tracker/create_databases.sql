@@ -8,3 +8,4 @@ CREATE USER IF NOT EXISTS 'tracker'@'localhost'
   IDENTIFIED BY '';
 GRANT ALL PRIVILEGES ON tracker_dev.* TO 'tracker' @'localhost';
 GRANT ALL PRIVILEGES ON tracker_test.* TO 'tracker' @'localhost';
+
