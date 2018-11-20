@@ -6,6 +6,7 @@ env:
 - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 if: tag IS blank
 <<<<<<< HEAD
+<<<<<<< HEAD
 jobs:
   include:
   - stage: build and publish
@@ -43,6 +44,8 @@ jobs:
       organization: $CF_ORG
       space: $CF_SPACE
 =======
+=======
+>>>>>>> d921f90... Add task for migrating databases
 
 jobs:
   include:
