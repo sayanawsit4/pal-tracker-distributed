@@ -3,7 +3,7 @@ sudo: false
 notifications:
   email: false
 env:
-  - RELEASE_TAG: {{release-$TRAVIS_BUILD_NUMBER}}
+  - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 if: tag IS blank
 
 
@@ -11,18 +11,15 @@ jobs:
   include:
     - stage: build and publish
       language: java
-      jdk: openjdk8
+      jdk: openjdk11
       install: skip
-      script:
-        - echo "Token is $GITHUB_OAUTH_TOKEN"
-        - echo "Travis Build Tag is $RELEASE_TAG"
-        - echo "Relese is $TRAVIS_BUILD_NUMBER"
-        - ./gradlew clean build
+      script: ./gradlew clean build
       before_deploy:
         - git config --local user.name "Travis CI"
         - git config --local user.email "travis@example.com"
-        - git tag -f $TRAVIS_BUILD_NUMBER
+        - git tag -f $RELEASE_TAG
       deploy:
+        edge: true
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
         file: "build/libs/pal-tracker.jar"
@@ -30,10 +27,10 @@ jobs:
     - stage: deploy to cf
       language: bash
       script:
-        - echo "Downloading $TRAVIS_BUILD_NUMBER"
-        - wget -P build/libs https://github.com/$GITHUB_USERNAME/pal-tracker/releases/download/$TRAVIS_BUILD_NUMBER/pal-tracker.jar
+        - echo "Downloading $RELEASE_TAG"
+        - wget -P build/libs https://github.com/$GITHUB_USERNAME/pal-tracker/releases/download/$RELEASE_TAG/pal-tracker.jar
       before_deploy:
-        - echo "Deploying $TRAVIS_BUILD_NUMBER to Cloud Foundry"
+        - echo "Deploying $RELEASE_TAG to Cloud Foundry"
       deploy:
         provider: cloudfoundry
         api: $CF_API_URL
