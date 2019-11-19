@@ -21,7 +21,7 @@ jobs:
         - git tag -f $TRAVIS_JOB_NUMBER
       deploy:
         provider: releases
-        api_key: $GITHUB_OAUTH_TOKEN
+        api_key: a3eb1d39f1663458f50610d03a9fbcbb09a2d257
         file: "build/libs/pal-tracker.jar"
         skip_cleanup: true
     - stage: deploy to cf
