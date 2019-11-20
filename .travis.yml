@@ -43,7 +43,7 @@ jobs:
       space: $CF_SPACE
     - stage: build and publish
       language: java
-      jdk: openjdk8
+      jdk: openjdk11
       addons:
         mariadb: '10.2'
       install: skip
@@ -78,3 +78,10 @@ jobs:
       before_script:
         - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
         - scripts/migrate-databases.sh pal-tracker .
+      deploy:
+        provider: cloudfoundry
+        api: $CF_API_URL
+        username: $CF_USERNAME
+        password: $CF_PASSWORD
+        organization: $CF_ORG
+        space: $CF_SPACE
