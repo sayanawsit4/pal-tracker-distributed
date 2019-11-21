@@ -7,6 +7,5 @@ applications:
   instances: 1
   env:
     REGISTRATION_SERVER_ENDPOINT: http://registration-pal-sayan-vismaya-123.apps.evans.pal.pivotal.io
-    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
   services:
   - tracker-timesheets-database

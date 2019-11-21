@@ -5,7 +5,5 @@ applications:
   - route: registration-pal-sayan-vismaya-123.apps.evans.pal.pivotal.io
   memory: 1G
   instances: 1
-  env:
-    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
   services:
   - tracker-registration-database
